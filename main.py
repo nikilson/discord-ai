@@ -20,10 +20,10 @@ class Bot():
 
     def get_bot_response(self, user_input):
 
-        history = []
+        self.history = self.history[-10:]
         while True:
             try:
-                response = get_response(api_key, user_input, history)
+                response = get_response(api_key, user_input, self.history)
                 dict_input = {"role": "user", "parts": [user_input]}
                 dict_response = {"role": "model", "parts": [response]}
                 self.history.append(dict_input)
